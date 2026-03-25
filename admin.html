@@ -683,35 +683,32 @@ document.querySelectorAll('.chart-period-tabs .chip').forEach(chip => {
   });
 });
 
-// ─── IMAGEKIT UPLOAD ────────────────────────────────────────────────
+// ─── IMAGEKIT UPLOAD (SECURE) ───────────────────────────────────────
 async function uploadToImageKit(file) {
-  const authResp = await fetch(`https://upload.imagekit.io/api/v1/files/upload`, {
-    method: 'POST',
-    body: (() => {
-      const fd = new FormData();
-      fd.append('file', file);
-      fd.append('fileName', `movie_${Date.now()}_${file.name}`);
-      fd.append('publicKey', IMAGEKIT.publicKey);
-      return fd;
-    })()
-  });
-  // Direct unsigned upload using public key
-  const fd = new FormData();
-  fd.append('file', file);
-  fd.append('fileName', `cinenova_${Date.now()}`);
-  fd.append('publicKey', IMAGEKIT.publicKey);
+  // 1. Get auth from your backend
+  const authRes = await fetch(IMAGEKIT.authEndpoint);
+  const { token, expire, signature } = await authRes.json();
 
-  // Use ImageKit's direct upload with private key auth
-  const tokenResp = await fetch('https://api.imagekit.io/v1/files/upload', {
-    method: 'POST',
-    headers: {
-      Authorization: 'Basic ' + btoa(IMAGEKIT.privateKey + ':')
-    },
+  // 2. Prepare upload
+  const fd = new FormData();
+  fd.append("file", file);
+  fd.append("fileName", `cinenova_${Date.now()}`);
+  fd.append("publicKey", IMAGEKIT.publicKey);
+  fd.append("token", token);
+  fd.append("expire", expire);
+  fd.append("signature", signature);
+
+  // 3. Upload to ImageKit
+  const res = await fetch("https://upload.imagekit.io/api/v1/files/upload", {
+    method: "POST",
     body: fd
   });
-  const data = await tokenResp.json();
-  if (data.url) return data.url;
-  throw new Error('ImageKit upload failed: ' + JSON.stringify(data));
+
+  const data = await res.json();
+
+  if (!res.ok) throw new Error(data.message);
+
+  return data.url;
 }
 
 // ─── MOVIES ─────────────────────────────────────────────────────────
