@@ -1,0 +1,11 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/movies", "destination": "/movies.html" },
+    { "source": "/movie", "destination": "/movie.html" },
+    { "source": "/vlogs", "destination": "/vlogs.html" },
+    { "source": "/advertise", "destination": "/advertise.html" },
+    { "source": "/admin", "destination": "/admin.html" }
+  ]
+}
