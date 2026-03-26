@@ -1,8 +1,0 @@
-{
-  "name": "cinenova",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {
-    "imagekit": "^6.0.0"
-  }
-}
