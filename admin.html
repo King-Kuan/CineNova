@@ -733,34 +733,33 @@ document.querySelectorAll('.chart-period-tabs .chip').forEach(chip => {
 });
 
 // ─── IMAGEKIT UPLOAD ────────────────────────────────────────────────
+// Step 1: Get signed auth params from our Vercel serverless function
+// Step 2: Upload file directly to ImageKit upload API with those params
 async function uploadToImageKit(file) {
-  const authResp = await fetch(`https://upload.imagekit.io/api/v1/files/upload`, {
-    method: 'POST',
-    body: (() => {
-      const fd = new FormData();
-      fd.append('file', file);
-      fd.append('fileName', `movie_${Date.now()}_${file.name}`);
-      fd.append('publicKey', IMAGEKIT.publicKey);
-      return fd;
-    })()
-  });
-  // Direct unsigned upload using public key
+  // Get authentication parameters from our backend
+  const authRes = await fetch('/api/imagekit-auth');
+  if (!authRes.ok) throw new Error('Failed to get ImageKit auth token. Check /api/imagekit-auth is deployed.');
+  const { signature, expire, token } = await authRes.json();
+
+  // Build the upload form
   const fd = new FormData();
   fd.append('file', file);
-  fd.append('fileName', `cinenova_${Date.now()}`);
+  fd.append('fileName', `cinenova_${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`);
   fd.append('publicKey', IMAGEKIT.publicKey);
+  fd.append('signature', signature);
+  fd.append('expire', expire);
+  fd.append('token', token);
+  fd.append('folder', '/cinenova');
 
-  // Use ImageKit's direct upload with private key auth
-  const tokenResp = await fetch('https://api.imagekit.io/v1/files/upload', {
+  // POST directly to ImageKit's upload endpoint
+  const uploadRes = await fetch('https://upload.imagekit.io/api/v1/files/upload', {
     method: 'POST',
-    headers: {
-      Authorization: 'Basic ' + btoa(IMAGEKIT.privateKey + ':')
-    },
     body: fd
   });
-  const data = await tokenResp.json();
+
+  const data = await uploadRes.json();
   if (data.url) return data.url;
-  throw new Error('ImageKit upload failed: ' + JSON.stringify(data));
+  throw new Error('ImageKit upload failed: ' + (data.message || JSON.stringify(data)));
 }
 
 // ─── MOVIES ─────────────────────────────────────────────────────────
