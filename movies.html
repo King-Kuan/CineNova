@@ -3,108 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Movie — CineNova</title>
+  <title>Movies — CineNova</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
   <style>
-    .movie-hero {
-      position: relative; min-height: 70vh;
-      display: flex; align-items: flex-end;
-      overflow: hidden;
+    .movies-page-header {
+      background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+      padding: 60px 40px 40px;
+      border-bottom: 1px solid var(--border);
     }
-    .movie-hero-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center top;
-      filter: blur(2px) brightness(0.4);
-      transform: scale(1.05);
-    }
-    .movie-hero-content {
-      position: relative; z-index: 2;
-      padding: 60px;
-      display: flex; gap: 40px; align-items: flex-end;
-      width: 100%;
-    }
-    .movie-poster-box {
-      flex-shrink: 0; width: 200px;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-      border: 2px solid var(--border2);
-    }
-    .movie-poster-box img { width: 100%; display: block; }
-    .movie-info { flex: 1; }
-    .movie-info h1 {
+    .movies-page-header h1 {
       font-family: var(--font-display);
-      font-size: clamp(36px, 5vw, 64px);
-      letter-spacing: 2px;
-      margin-bottom: 12px;
-      line-height: 1;
+      font-size: 48px; letter-spacing: 2px;
+      margin-bottom: 8px;
     }
-    .movie-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-    .movie-tag {
-      padding: 4px 12px; border-radius: 6px;
-      font-size: 12px; font-weight: 600;
-      background: var(--surface); border: 1px solid var(--border2);
-      color: var(--text2);
+    .movies-page-header p { color: var(--text2); font-size: 14px; margin-bottom: 28px; }
+    .search-filter-row {
+      display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
     }
-    .movie-tag.cat { background: var(--accent-dim); border-color: rgba(232,176,75,0.3); color: var(--accent); }
-    .movie-desc-short { font-size: 15px; color: var(--text2); max-width: 600px; line-height: 1.7; margin-bottom: 24px; }
-    .download-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      margin-bottom: 32px;
-    }
-    .download-section h2 { font-family: var(--font-display); font-size: 24px; letter-spacing: 1px; margin-bottom: 20px; }
-    .download-btn {
-      display: flex; align-items: center; gap: 12px;
-      padding: 14px 20px;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      margin-bottom: 12px;
-      cursor: pointer;
-      transition: var(--transition);
-      color: var(--text);
-      text-decoration: none;
-    }
-    .download-btn:hover { border-color: var(--accent); background: var(--accent-dim); }
-    .dl-icon { font-size: 24px; }
-    .dl-info { flex: 1; }
-    .dl-label { font-size: 14px; font-weight: 600; }
-    .dl-sub { font-size: 12px; color: var(--text3); }
-    .dl-arrow { color: var(--accent); font-size: 20px; }
-    .trailer-section { margin-bottom: 40px; }
-    .trailer-section h2 { font-family: var(--font-display); font-size: 28px; letter-spacing: 1px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-    .trailer-section h2::before { content:''; width:4px; height:24px; background:var(--accent); border-radius:2px; display:inline-block; }
-    .trailer-embed {
-      aspect-ratio: 16/9;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-    .trailer-embed iframe { width: 100%; height: 100%; border: none; }
-    .movie-body-grid {
-      display: grid; grid-template-columns: 1fr 340px; gap: 40px;
-      padding: 40px 60px;
-    }
-    .sidebar-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    .sidebar-card h3 { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text3); margin-bottom: 14px; }
-    .sidebar-stat { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-    .sidebar-stat:last-child { border: none; }
-    .sidebar-stat span:first-child { color: var(--text2); }
-    .sidebar-stat span:last-child { color: var(--text); font-weight: 600; }
-    @media(max-width:900px){
-      .movie-hero-content { flex-direction: column; padding: 30px 20px; gap: 20px; align-items: flex-start; }
-      .movie-poster-box { width: 140px; }
-      .movie-body-grid { grid-template-columns: 1fr; padding: 24px 20px; }
+    .search-filter-row .search-wrap { flex: 1; min-width: 200px; max-width: 400px; }
+    .movies-count { font-size: 13px; color: var(--text3); margin-top: 16px; }
+    @media(max-width:768px){
+      .movies-page-header { padding: 40px 20px 28px; }
+      .movies-page-header h1 { font-size: 36px; }
     }
   </style>
 </head>
@@ -113,256 +34,161 @@
 <div id="ribbon-ad-wrap"></div>
 
 <main class="page-wrap">
-  <div id="movie-page-content">
-    <div style="display:flex;justify-content:center;padding:120px 0"><div class="loader"></div></div>
+  <div class="movies-page-header">
+    <h1>All Movies</h1>
+    <p>Browse, filter, and download your favorite films</p>
+    <div class="search-filter-row">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Search movies...">
+      </div>
+      <select class="form-select" id="sort-select" style="width:auto;padding:10px 14px">
+        <option value="newest">Newest First</option>
+        <option value="popular">Most Downloaded</option>
+        <option value="az">A–Z</option>
+        <option value="za">Z–A</option>
+      </select>
+    </div>
+    <div style="margin-top:20px">
+      <div class="filter-chips" id="cat-chips"></div>
+    </div>
+    <div class="movies-count" id="movies-count"></div>
   </div>
+
+  <section class="section">
+    <div class="movies-grid" id="movies-grid">
+      <div class="loader"></div>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <button class="btn btn-ghost" id="load-more-btn" style="display:none">Load More</button>
+    </div>
+  </section>
 </main>
 
 <div id="footer-wrap"></div>
 <div class="toast-container"></div>
 
 <script type="module">
-import { db, auth, renderNavbar, renderFooter, initNavbar, getYouTubeId, formatDate, toast } from '/js/firebase-config.js';
+import { db, renderNavbar, renderFooter, initNavbar } from '/js/firebase-config.js';
 import { injectAds } from '/js/ads.js';
-import {
-  doc, getDoc, collection, addDoc, query, where, orderBy, getDocs,
-  updateDoc, increment, serverTimestamp, Timestamp
-} from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+import { collection, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
 document.getElementById('navbar-wrap').innerHTML = renderNavbar('movies');
 document.getElementById('footer-wrap').innerHTML = renderFooter();
 initNavbar('movies');
 injectAds();
 
-const params = new URLSearchParams(location.search);
-const movieId = params.get('id');
+const CATEGORIES = ['All','Action','Drama','Comedy','Horror','Thriller','Romance','Sci-Fi','Animation','Documentary','Fantasy'];
+let allMovies = [], filtered = [], activecat = 'All', sortMode = 'newest', searchQ = '';
+const PAGE_SIZE = 20;
+let page = 1;
 
-if (!movieId) {
-  document.getElementById('movie-page-content').innerHTML = '<div class="empty-state"><div class="icon">🎬</div><h3>Movie not found</h3><p><a href="/movies.html" style="color:var(--accent)">Browse all movies</a></p></div>';
-} else {
-  loadMovie();
+document.getElementById('cat-chips').innerHTML = CATEGORIES.map(c =>
+  `<span class="chip${c === 'All' ? ' active' : ''}" data-cat="${c}">${c}</span>`
+).join('');
+
+document.querySelectorAll('#cat-chips .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#cat-chips .chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activecat = chip.dataset.cat;
+    page = 1;
+    applyFilters();
+  });
+});
+
+document.getElementById('sort-select').addEventListener('change', e => {
+  sortMode = e.target.value;
+  page = 1;
+  applyFilters();
+});
+
+document.getElementById('search-input').addEventListener('input', e => {
+  searchQ = e.target.value.toLowerCase();
+  page = 1;
+  applyFilters();
+});
+
+document.getElementById('load-more-btn').addEventListener('click', () => {
+  page++;
+  renderGrid(false);
+});
+
+// Check URL params
+const params = new URLSearchParams(location.search);
+if (params.get('cat')) {
+  // Decode and trim to avoid encoding/whitespace mismatches
+  activecat = decodeURIComponent(params.get('cat')).trim();
+  document.querySelectorAll('#cat-chips .chip').forEach(c => {
+    c.classList.toggle('active', c.dataset.cat.toLowerCase() === activecat.toLowerCase());
+  });
 }
 
-async function loadMovie() {
+async function loadMovies() {
   try {
-    const snap = await getDoc(doc(db, 'movies', movieId));
-    if (!snap.exists()) {
-      document.getElementById('movie-page-content').innerHTML = '<div class="empty-state"><div class="icon">🎬</div><h3>Movie not found</h3></div>';
-      return;
-    }
-    const m = { id: snap.id, ...snap.data() };
-    document.title = `${m.title} — CineNova`;
-    renderMovie(m);
-    loadComments();
+    const snap = await getDocs(query(collection(db, 'movies'), orderBy('createdAt', 'desc')));
+    allMovies = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    applyFilters();
   } catch (e) {
-    document.getElementById('movie-page-content').innerHTML = '<div class="empty-state"><div class="icon">⚠️</div><h3>Failed to load movie</h3></div>';
+    document.getElementById('movies-grid').innerHTML = '<div class="empty-state"><div class="icon">⚠️</div><h3>Failed to load movies</h3></div>';
   }
 }
 
-function getHostIcon(url) {
-  if (!url) return '⬇️';
-  if (url.includes('drive.google.com')) return '📁';
-  if (url.includes('mega.nz') || url.includes('mega.co')) return '💾';
-  if (url.includes('mediafire.com')) return '🔥';
-  return '⬇️';
+function applyFilters() {
+  filtered = allMovies.filter(m => {
+    const matchCat = activecat === 'All' || (m.category || '').trim().toLowerCase() === activecat.trim().toLowerCase();
+    const matchSearch = !searchQ || m.title?.toLowerCase().includes(searchQ) || m.description?.toLowerCase().includes(searchQ);
+    return matchCat && matchSearch;
+  });
+
+  if (sortMode === 'popular') filtered.sort((a, b) => (b.downloads || 0) - (a.downloads || 0));
+  else if (sortMode === 'az') filtered.sort((a, b) => a.title?.localeCompare(b.title));
+  else if (sortMode === 'za') filtered.sort((a, b) => b.title?.localeCompare(a.title));
+  else filtered.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+
+  document.getElementById('movies-count').textContent = `${filtered.length} movie${filtered.length !== 1 ? 's' : ''} found`;
+  renderGrid(true);
 }
 
-function getHostName(url) {
-  if (!url) return 'Download';
-  if (url.includes('drive.google.com')) return 'Google Drive';
-  if (url.includes('mega.nz') || url.includes('mega.co')) return 'MEGA';
-  if (url.includes('mediafire.com')) return 'MediaFire';
-  return 'Download File';
-}
+function renderGrid(reset) {
+  const grid = document.getElementById('movies-grid');
+  const slice = filtered.slice(0, page * PAGE_SIZE);
 
-async function handleDownload(url, movieId) {
-  try {
-    await updateDoc(doc(db, 'movies', movieId), { downloads: increment(1) });
-    const entry = {
-      movieId,
-      timestamp: serverTimestamp(),
-      week: getWeekNum(),
-      month: new Date().getMonth() + 1,
-      year: new Date().getFullYear()
-    };
-    await addDoc(collection(db, 'downloads'), entry);
-  } catch {}
-  window.open(url, '_blank');
-}
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="icon">🎬</div><h3>No movies found</h3><p>Try a different category or search term.</p></div>';
+    document.getElementById('load-more-btn').style.display = 'none';
+    return;
+  }
 
-function getWeekNum() {
-  const now = new Date();
-  const start = new Date(now.getFullYear(), 0, 1);
-  return Math.ceil(((now - start) / 86400000 + start.getDay() + 1) / 7);
-}
+  if (reset) grid.innerHTML = '';
 
-function renderMovie(m) {
-  const ytId = getYouTubeId(m.trailerUrl || '');
-  const downloadLinks = m.downloadLinks || (m.downloadUrl ? [m.downloadUrl] : []);
-  document.getElementById('movie-page-content').innerHTML = `
-  <!-- HERO -->
-  <div class="movie-hero">
-    <div class="movie-hero-bg" style="background-image:url('${m.posterUrl}')"></div>
-    <div class="movie-hero-content">
-      <div class="movie-poster-box">
-        <img src="${m.posterUrl || ''}" alt="${m.title}">
-      </div>
-      <div class="movie-info">
-        <div class="movie-tags">
-          ${m.category ? `<span class="movie-tag cat">${m.category}</span>` : ''}
-          ${m.year ? `<span class="movie-tag">${m.year}</span>` : ''}
-          ${m.rating ? `<span class="movie-tag">⭐ ${m.rating}/5</span>` : ''}
-          ${m.language ? `<span class="movie-tag">🌐 ${m.language}</span>` : ''}
-        </div>
-        <h1>${m.title}</h1>
-        <p class="movie-desc-short">${m.description || ''}</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          ${ytId ? `<a href="#trailer" class="btn btn-primary">▶ Watch Trailer</a>` : ''}
-          <a href="#download" class="btn btn-ghost">⬇ Download</a>
+  const start = reset ? 0 : (page - 1) * PAGE_SIZE;
+  const newItems = filtered.slice(start, page * PAGE_SIZE);
+  newItems.forEach(m => {
+    const div = document.createElement('div');
+    div.className = 'movie-card';
+    div.onclick = () => location.href = `/movie.html?id=${m.id}`;
+    div.innerHTML = `
+      <div class="movie-card-poster">
+        <img src="${m.posterUrl || 'https://via.placeholder.com/200x300/141c26/4a6070?text=No+Image'}" alt="${m.title}" loading="lazy">
+        <div class="movie-card-overlay">
+          <div class="movie-card-play">▶</div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- BODY -->
-  <div class="movie-body-grid">
-    <div>
-      <!-- TRAILER -->
-      ${ytId ? `
-      <div class="trailer-section" id="trailer">
-        <h2>Official Trailer</h2>
-        <div class="trailer-embed">
-          <iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      <div class="movie-card-body">
+        <div class="movie-card-title">${m.title}</div>
+        <div class="movie-card-meta">
+          <span class="movie-card-year">${m.year || ''}</span>
+          <span class="movie-card-cat">${m.category || ''}</span>
         </div>
-      </div>` : ''}
-
-      <!-- DOWNLOAD -->
-      <div class="download-section" id="download">
-        <h2>⬇ Download Movie</h2>
-        <p style="font-size:13px;color:var(--text3);margin-bottom:16px">Choose your preferred download server:</p>
-        ${downloadLinks.length ? downloadLinks.map((url, i) => `
-          <div class="download-btn" onclick="window._downloadHandler('${url}')">
-            <span class="dl-icon">${getHostIcon(url)}</span>
-            <div class="dl-info">
-              <div class="dl-label">Server ${i + 1} — ${getHostName(url)}</div>
-              <div class="dl-sub">Click to start download</div>
-            </div>
-            <span class="dl-arrow">→</span>
-          </div>`).join('') : '<p style="color:var(--text3);font-size:14px">No download links available yet.</p>'}
-      </div>
-
-      <!-- COMMENTS -->
-      <div id="comments-section">
-        <h2 style="font-family:var(--font-display);font-size:28px;letter-spacing:1px;margin-bottom:24px;display:flex;align-items:center;gap:10px">
-          <span style="width:4px;height:24px;background:var(--accent);border-radius:2px;display:inline-block"></span>
-          Comments
-        </h2>
-        <div class="comment-form">
-          <h3 style="font-size:15px;font-weight:600;margin-bottom:18px">Leave a Comment</h3>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-            <div class="form-group">
-              <label class="form-label">Your Name *</label>
-              <input type="text" class="form-input" id="comment-name" placeholder="Enter your name">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Email (optional)</label>
-              <input type="email" class="form-input" id="comment-email" placeholder="your@email.com">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Comment *</label>
-            <textarea class="form-textarea" id="comment-text" placeholder="Share your thoughts about this movie..."></textarea>
-          </div>
-          <button class="btn btn-primary" id="submit-comment-btn">Post Comment</button>
-        </div>
-        <div id="comments-list"><div class="loader"></div></div>
-      </div>
-    </div>
-
-    <!-- SIDEBAR -->
-    <div>
-      <div class="sidebar-card">
-        <h3>Movie Details</h3>
-        ${m.director ? `<div class="sidebar-stat"><span>Director</span><span>${m.director}</span></div>` : ''}
-        ${m.cast ? `<div class="sidebar-stat"><span>Cast</span><span>${m.cast}</span></div>` : ''}
-        ${m.year ? `<div class="sidebar-stat"><span>Year</span><span>${m.year}</span></div>` : ''}
-        ${m.duration ? `<div class="sidebar-stat"><span>Duration</span><span>${m.duration}</span></div>` : ''}
-        ${m.language ? `<div class="sidebar-stat"><span>Language</span><span>${m.language}</span></div>` : ''}
-        ${m.quality ? `<div class="sidebar-stat"><span>Quality</span><span>${m.quality}</span></div>` : ''}
-        <div class="sidebar-stat"><span>Downloads</span><span id="dl-count">${m.downloads || 0}</span></div>
-      </div>
-    </div>
-  </div>`;
-
-  window._downloadHandler = (url) => handleDownload(url, movieId);
-
-  document.getElementById('submit-comment-btn').addEventListener('click', submitComment);
-}
-
-async function loadComments() {
-  try {
-    const q = query(collection(db, 'comments'), where('movieId', '==', movieId), orderBy('createdAt', 'desc'));
-    const snap = await getDocs(q);
-    const list = document.getElementById('comments-list');
-    if (!list) return;
-    if (snap.empty) {
-      list.innerHTML = '<div class="empty-state"><div class="icon">💬</div><h3>No comments yet</h3><p>Be the first to comment!</p></div>';
-      return;
-    }
-    list.innerHTML = snap.docs.map(d => {
-      const c = d.data();
-      const initials = (c.name || 'A').charAt(0).toUpperCase();
-      return `
-      <div class="comment-item">
-        <div class="comment-author">
-          <div class="comment-avatar">${initials}</div>
-          <div>
-            <div class="comment-name">${c.name || 'Anonymous'}</div>
-            <div class="comment-date">${formatDate(c.createdAt)}</div>
-          </div>
-        </div>
-        <div class="comment-text">${c.text}</div>
       </div>`;
-    }).join('');
-  } catch {}
+    grid.appendChild(div);
+  });
+
+  document.getElementById('load-more-btn').style.display = filtered.length > page * PAGE_SIZE ? 'inline-flex' : 'none';
 }
 
-async function submitComment() {
-  const name = document.getElementById('comment-name').value.trim();
-  const text = document.getElementById('comment-text').value.trim();
-  if (!name || !text) { toast('Please fill in your name and comment.', 'error'); return; }
-
-  // ── Comment validation ──────────────────────────────────────────
-  // Block URLs / links (http, https, www, .com, .net, .org, etc.)
-  const hasLink = /https?:\/\/|www\.|\.com|\.net|\.org|\.io|\.co|\.gg|\.tv|\.me|\.info|\.biz/i.test(text);
-  if (hasLink) { toast('Comments cannot contain website links.', 'error'); return; }
-
-  // Block sequences of more than 3 digits (phone numbers, etc.)
-  const hasLongNumber = /\d{4,}/.test(text);
-  if (hasLongNumber) { toast('Comments cannot contain phone numbers or long digit sequences.', 'error'); return; }
-
-  // Block email addresses
-  const hasEmail = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/.test(text);
-  if (hasEmail) { toast('Comments cannot contain email addresses.', 'error'); return; }
-  // ────────────────────────────────────────────────────────────────
-  const btn = document.getElementById('submit-comment-btn');
-  btn.textContent = 'Posting...'; btn.disabled = true;
-  try {
-    await addDoc(collection(db, 'comments'), {
-      movieId,
-      name,
-      email: document.getElementById('comment-email').value.trim() || '',
-      text,
-      createdAt: serverTimestamp()
-    });
-    document.getElementById('comment-name').value = '';
-    document.getElementById('comment-email').value = '';
-    document.getElementById('comment-text').value = '';
-    toast('Comment posted!', 'success');
-    loadComments();
-  } catch { toast('Failed to post comment.', 'error'); }
-  btn.textContent = 'Post Comment'; btn.disabled = false;
-}
+loadMovies();
 </script>
 </body>
 </html>
