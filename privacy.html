@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — CineNova</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+  <style>
+    .legal-hero {
+      background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 40px 40px;
+    }
+    .legal-hero h1 { font-family: var(--font-display); font-size: 48px; letter-spacing: 2px; margin-bottom: 8px; }
+    .legal-hero p { color: var(--text3); font-size: 13px; }
+    .legal-body { max-width: 820px; margin: 0 auto; padding: 48px 40px; }
+    .legal-body h2 { font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; color: var(--accent); margin: 36px 0 12px; }
+    .legal-body h2:first-child { margin-top: 0; }
+    .legal-body p { font-size: 14px; color: var(--text2); line-height: 1.8; margin-bottom: 14px; }
+    .legal-body ul { padding-left: 20px; margin-bottom: 14px; }
+    .legal-body ul li { font-size: 14px; color: var(--text2); line-height: 1.8; margin-bottom: 6px; }
+    .legal-body a { color: var(--accent); }
+    .legal-body a:hover { color: var(--accent2); }
+    .legal-divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+    @media(max-width:768px) {
+      .legal-hero { padding: 48px 20px 28px; }
+      .legal-hero h1 { font-size: 36px; }
+      .legal-body { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div id="navbar-wrap"></div>
+<div id="ribbon-ad-wrap"></div>
+<main class="page-wrap">
+  <div class="legal-hero">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: January 1, 2025 &nbsp;·&nbsp; CineNova by The Palace Tech House</p>
+  </div>
+  <div class="legal-body">
+    <h2>1. Introduction</h2>
+    <p>Welcome to CineNova ("we," "us," or "our"), operated by The Palace Tech House — The Palace, Inc. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website. Please read this policy carefully. If you disagree with its terms, please discontinue use of the site.</p>
+
+    <h2>2. Information We Collect</h2>
+    <p>We may collect the following types of information:</p>
+    <ul>
+      <li><strong>Comments:</strong> When you post a comment on a movie, we collect your name and optionally your email address, along with the text of your comment.</li>
+      <li><strong>Advertiser Applications:</strong> When you apply to advertise, we collect your business name, contact name, email, phone number, and ad content details.</li>
+      <li><strong>Usage Data:</strong> We automatically collect anonymised data about how you interact with the site, including pages visited, download events, and session duration, via Firebase Analytics.</li>
+      <li><strong>Device Data:</strong> We may collect device type, browser type, IP address, and referral URLs for operational and security purposes.</li>
+    </ul>
+
+    <h2>3. How We Use Your Information</h2>
+    <ul>
+      <li>To display your comments on movie pages</li>
+      <li>To process and review advertiser applications</li>
+      <li>To track download counts and improve content recommendations</li>
+      <li>To understand how users interact with the site (analytics)</li>
+      <li>To prevent fraud, abuse, and security threats</li>
+      <li>To comply with applicable laws and regulations</li>
+    </ul>
+
+    <h2>4. Third-Party Services</h2>
+    <p>CineNova uses the following third-party services, each with their own privacy policies:</p>
+    <ul>
+      <li><strong>Google Firebase / Firestore</strong> — database and authentication services</li>
+      <li><strong>Google Analytics (via Firebase)</strong> — anonymised usage analytics</li>
+      <li><strong>ImageKit</strong> — image hosting and optimisation</li>
+      <li><strong>YouTube</strong> — trailer embedding (subject to Google's privacy policy)</li>
+      <li><strong>Google Drive / MEGA / MediaFire</strong> — third-party file hosting for downloads</li>
+    </ul>
+    <p>We do not control these third parties and are not responsible for their data practices.</p>
+
+    <h2>5. Cookies</h2>
+    <p>We use session storage and browser cookies to manage ad display frequency (e.g., showing a popup ad only once per session). We do not use cookies for cross-site tracking or advertising profiling. You may disable cookies in your browser settings, though some site features may be affected.</p>
+
+    <h2>6. Data Retention</h2>
+    <p>Comments are retained indefinitely unless removed by our admin team. Advertiser application data is retained for as long as necessary to process and fulfill the business relationship. Analytics data is retained per Google Firebase's standard retention policies.</p>
+
+    <h2>7. Children's Privacy</h2>
+    <p>CineNova is not directed to children under the age of 13. We do not knowingly collect personal information from children. If you believe a child has submitted information to us, please contact us immediately.</p>
+
+    <h2>8. Your Rights</h2>
+    <p>Depending on your location, you may have the right to access, correct, or delete personal data we hold about you. To exercise any of these rights, please contact us at the address below.</p>
+
+    <h2>9. Changes to This Policy</h2>
+    <p>We reserve the right to update this Privacy Policy at any time. Changes will be posted on this page with an updated revision date. Continued use of the site after changes are posted constitutes acceptance of the revised policy.</p>
+
+    <h2>10. Contact Us</h2>
+    <p>If you have questions about this Privacy Policy, please <a href="/contact.html">contact us here</a> or reach out to The Palace Tech House directly.</p>
+  </div>
+</main>
+<div id="footer-wrap"></div>
+<script type="module">
+import { renderNavbar, renderFooter, initNavbar } from '/js/firebase-config.js';
+import { injectAds } from '/js/ads.js';
+document.getElementById('navbar-wrap').innerHTML = renderNavbar('');
+document.getElementById('footer-wrap').innerHTML = renderFooter();
+initNavbar('');
+injectAds();
+</script>
+</body>
+</html>

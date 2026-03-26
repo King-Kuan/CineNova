@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DMCA Policy — CineNova</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+  <style>
+    .legal-hero { background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%); border-bottom: 1px solid var(--border); padding: 64px 40px 40px; }
+    .legal-hero h1 { font-family: var(--font-display); font-size: 48px; letter-spacing: 2px; margin-bottom: 8px; }
+    .legal-hero p { color: var(--text3); font-size: 13px; }
+    .legal-body { max-width: 820px; margin: 0 auto; padding: 48px 40px; }
+    .legal-body h2 { font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; color: var(--accent); margin: 36px 0 12px; }
+    .legal-body h2:first-child { margin-top: 0; }
+    .legal-body p { font-size: 14px; color: var(--text2); line-height: 1.8; margin-bottom: 14px; }
+    .legal-body ul { padding-left: 20px; margin-bottom: 14px; }
+    .legal-body ul li { font-size: 14px; color: var(--text2); line-height: 1.8; margin-bottom: 6px; }
+    .legal-body a { color: var(--accent); }
+    .dmca-notice-box {
+      background: rgba(232,176,75,0.08);
+      border: 1px solid rgba(232,176,75,0.3);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .dmca-notice-box h3 { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+    .dmca-notice-box p { font-size: 13px; margin: 0; }
+    @media(max-width:768px) { .legal-hero { padding: 48px 20px 28px; } .legal-hero h1 { font-size: 36px; } .legal-body { padding: 32px 20px; } }
+  </style>
+</head>
+<body>
+<div id="navbar-wrap"></div>
+<div id="ribbon-ad-wrap"></div>
+<main class="page-wrap">
+  <div class="legal-hero">
+    <h1>DMCA Policy</h1>
+    <p>Last updated: January 1, 2025 &nbsp;·&nbsp; CineNova by The Palace Tech House</p>
+  </div>
+  <div class="legal-body">
+    <h2>Our Position on Copyright</h2>
+    <p>CineNova respects the intellectual property rights of others and expects users and advertisers to do the same. CineNova operates as an index site — we do not host, upload, or store any movie files on our servers. All download links point to third-party file hosting platforms (Google Drive, MEGA, MediaFire) which are not under our control.</p>
+
+    <div class="dmca-notice-box">
+      <h3>⚡ Fast Takedown</h3>
+      <p>We take copyright concerns seriously. Valid DMCA notices are actioned within <strong style="color:var(--accent)">48–72 hours</strong>. Please use the <a href="/contact.html">contact form</a> or email us directly with the required information below.</p>
+    </div>
+
+    <h2>Filing a DMCA Takedown Notice</h2>
+    <p>If you are a copyright owner or authorised agent and believe that content indexed on CineNova infringes your copyright, you may submit a DMCA takedown notice. Your notice must include all of the following:</p>
+    <ul>
+      <li>Your full legal name and a description of your role (copyright owner or authorised agent)</li>
+      <li>A description of the copyrighted work you believe has been infringed</li>
+      <li>The exact URL(s) on CineNova where the allegedly infringing material appears</li>
+      <li>Your contact information: email address, mailing address, and telephone number</li>
+      <li>A statement that you have a good faith belief that the use of the material is not authorised by the copyright owner, its agent, or the law</li>
+      <li>A statement, under penalty of perjury, that the information in your notice is accurate and that you are the copyright owner or authorised to act on their behalf</li>
+      <li>Your physical or electronic signature</li>
+    </ul>
+    <p>Send your completed notice to us via the <a href="/contact.html">Contact page</a>. Incomplete notices may not be processed.</p>
+
+    <h2>What Happens After You File</h2>
+    <p>Upon receipt of a valid DMCA notice, we will:</p>
+    <ul>
+      <li>Remove or disable access to the identified content within 48–72 hours</li>
+      <li>Notify the user who posted the content (if applicable)</li>
+      <li>Document the takedown in our records</li>
+    </ul>
+
+    <h2>Counter-Notice</h2>
+    <p>If you believe your content was removed in error, you may submit a counter-notice. A valid counter-notice must include your name, contact details, identification of the removed content, a statement under penalty of perjury that you believe the removal was a mistake or misidentification, your consent to local court jurisdiction, and your signature.</p>
+
+    <h2>Repeat Infringers</h2>
+    <p>CineNova will, in appropriate circumstances, disable and/or terminate access for users who are repeat infringers of intellectual property rights.</p>
+
+    <h2>Disclaimer</h2>
+    <p>Nothing in this policy constitutes legal advice. If you have questions about copyright law, we encourage you to consult a qualified attorney.</p>
+  </div>
+</main>
+<div id="footer-wrap"></div>
+<script type="module">
+import { renderNavbar, renderFooter, initNavbar } from '/js/firebase-config.js';
+import { injectAds } from '/js/ads.js';
+document.getElementById('navbar-wrap').innerHTML = renderNavbar('');
+document.getElementById('footer-wrap').innerHTML = renderFooter();
+initNavbar('');
+injectAds();
+</script>
+</body>
+</html>
